@@ -1,13 +1,21 @@
 import { useLoaderData, useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { CiLocationOn } from "react-icons/ci";
 import { MdOutlineCalendarMonth } from "react-icons/md";
 import { FiPhone } from "react-icons/fi";
 import { MdOutlineMail } from "react-icons/md";
 import { CiDollar } from "react-icons/ci";
 import "../../App.css"
+import { saveJobApplication } from "../Utility/Localstorage";
 // import PropTypes from 'prop-types';
 
 const JobDetails = () => {
+
+    const notify = () => {
+        saveJobApplication(idInt);
+        toast("You have Applied successfully!")
+    };
     const jobs = useLoaderData();
     const {id} = useParams();
     const idInt = parseInt(id);
@@ -43,7 +51,8 @@ const JobDetails = () => {
                                 <p><CiLocationOn /> Address : {job.contact_information.address}</p>
                             </div>
                             <div>
-                                <button className="w-full btn mt-6 btn-primary">Apply Now</button>
+                                <button onClick={notify} className="w-full btn mt-6 btn-primary">Apply Now</button>
+                                <ToastContainer></ToastContainer>
                             </div>
                         </div>
                     </div>

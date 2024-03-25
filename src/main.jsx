@@ -23,14 +23,15 @@ const router = createBrowserRouter([
         element:<Home></Home>
       },
       {
-        path:'/applied',
-        element:<AppliedJobs></AppliedJobs>
+        path:'/applied_jobs',
+        element:<AppliedJobs></AppliedJobs>,
+        loader: () => fetch('../public/data/jobs.json')
       },
       {
         path:'/job/:id',
         element:<JobDetails></JobDetails>,
         loader: () => fetch('../public/data/jobs.json')
-      },
+      }
     ]
   },
 ]);
